@@ -1,0 +1,15 @@
+/* 104 Write a Program to take a positive integer n as input, and find the pivot integer x */
+#include <stdio.h>
+int main() {
+    int n;
+    scanf("%d", &n);
+    int total = n * (n + 1) / 2;
+    for (int x = 1; x <= n; x++)
+    
+    {
+        if (x * x == total)
+            return printf("%d\n", x), 0;
+    }
+    printf("-1\n");
+    return 0;
+}
