@@ -1,0 +1,24 @@
+Store employee data in a binary file using fwrite() and read using fread().
+  #include <stdio.h>
+enum Dept { HR, SALES, TECH };
+struct Employee {
+    char name[50];
+    int id;
+    enum Dept dept;
+};
+
+int main() {
+    struct Employee e1 = {"Alice", 101, TECH};
+    struct Employee e2;
+
+    FILE *fp = fopen("emp.dat", "wb");
+    fwrite(&e1, sizeof(struct Employee), 1, fp);
+    fclose(fp);
+
+    fp = fopen("emp.dat", "rb");
+    fread(&e2, sizeof(struct Employee), 1, fp);
+    fclose(fp);
+
+    printf("%s %d %d", e2.name, e2.id, e2.dept);
+    return 0;
+}
