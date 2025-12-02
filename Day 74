@@ -1,0 +1,24 @@
+Take two filenames from the user – a source file and a destination file. Copy all the content from the source file to the destination file using fgetc() and fputc().
+#include <stdio.h>
+int main()
+{
+    char src[100], dest[100];
+    scanf("%s %s", src, dest);
+
+    FILE *fs = fopen(src, "r");
+    if(fs == NULL) return 1;
+
+    FILE *fd = fopen(dest, "w");
+    if(fd == NULL) {
+        fclose(fs);
+        return 1;
+    }
+
+    char c;
+    while((c = fgetc(fs)) != EOF)
+        fputc(c, fd);
+
+    fclose(fs);
+    fclose(fd);
+    return 0;
+}
