@@ -1,0 +1,24 @@
+write a program that reads text from input.txt, converts all lowercase letters to uppercase, and writes the result to output.txt.
+#include <stdio.h>
+int main()
+{
+    FILE *fin = fopen("input.txt", "r");
+    if(fin == NULL) return 1;
+
+    FILE *fout = fopen("output.txt", "w");
+    if(fout == NULL) {
+        fclose(fin);
+        return 1;
+    }
+
+    char c;
+    while((c = fgetc(fin)) != EOF) {
+        if(c >= 'a' && c <= 'z')
+            c = c - 'a' + 'A';
+        fputc(c, fout);
+    }
+
+    fclose(fin);
+    fclose(fout);
+    return 0;
+}
